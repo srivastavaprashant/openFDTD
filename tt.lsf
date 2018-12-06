@@ -1,0 +1,26 @@
+switchtolayout;
+setnamed("structure","enabled",0);
+run;
+E=pinch(getdata("T","Ey"));
+vac_angle=pinch(angle(E(1,1:1000))) ;
+
+switchtolayout;
+setnamed("structure","enabled",1);
+run;
+E=pinch(getdata("T","Ey"));
+TM_angle=pinch(angle(E(1,1:1000))) ;
+t=getresult("T","T");T=t.getattribute("T");
+f=getdata("T","f");
+tangle=unwrap(TM_angle(1:1000,1) - vac_angle(1:1000,1));
+
+switchtolayout;
+setnamed("structure","enabled",0);
+run;
+E=pinch(getdata("T","Ey"));
+vac_angle=pinch(angle(E(1,1:1000))) ;
+
+
+write("f.dat",num2str(f));
+write("ttmp30h10f0.dat",num2str(T));
+write("atmp30h10f0.dat",num2str(tangle));
+

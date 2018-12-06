@@ -1,0 +1,72 @@
+tTM=matrix(10,9,1000);
+pTM=matrix(10,9,1000);
+f=matrix(1,1000);
+#Geometry
+pp=10e-6;
+#ht=2e-6;
+ff=0.1;
+
+#getting phase for vaccum
+switchtolayout;
+setnamed("structure","enabled",0);
+#setnamed("probe","Polarization angle",90);#TM
+run;
+E_vac=pinch(getdata("T","Ez"));
+a_vac=pinch(angle(E_vac(1,1:1000)));
+f=getdata("T","f");
+switchtolayout;
+setnamed("structure","enabled",1);
+
+
+j=0;k=0;
+#plasma frequency sweep 
+for(j=1;j<10;j=j+1) {
+    ?ff;    
+    switchtolayout;
+    setnamed("structure","x",0);setnamed("structure","y",0);setnamed("structure","z",0);
+    setnamed("FDTD","y span",pp);
+    setnamed("T","y span",pp);
+    setnamed("structure::Doped Silicon","y",0);
+    setnamed("structure::Doped Silicon","y span",ff*pp);
+    setnamed("structure::Silicon 1","y",pp*(1+ff)/-4);
+    setnamed("structure::Silicon 1","y span",(1-ff)*pp/2);
+    setnamed("structure::Silicon 2","y",pp*(1+ff)/4);
+    setnamed("structure::Silicon 2","y span",(1-ff)*pp/2);
+    ff=ff+0.1;ht=10e-6;
+    for(k=1;k<11;k=k+1)
+    {
+        ?ht;
+        switchtolayout;
+        setnamed("FDTD","x span",ht+20e-6);
+        setnamed("T","x",ht/2+5e-6);
+        setnamed("source","x",ht/-2-5e-6);
+        
+        setnamed("structure::Doped Silicon","x span",ht);
+        setnamed("structure::Silicon 1","x span",ht);
+        setnamed("structure::Silicon 2","x span",ht);
+        
+        run;
+        
+        T = getresult("T","T");
+        tTM(k,j,1:1000) = T.getattribute("T");  
+        E=pinch(getdata("T","Ez"));
+        TM_angle=pinch(angle(E(1,1:1000))) ;        
+        pTM(k,j,1:1000)=unwrap((TM_angle(1:1000,1))-(a_vac(1:1000,1)));
+        
+        ht=ht+10e-6;        
+    }
+}
+
+write("latestfTE.dat",num2str(f));
+for(i=1;i<10;i=i+1){ 
+write("latesttTE"+num2str(i)+".dat",num2str(pinch(tTM(1:10,i,1:1000))));
+write("latestpTE"+num2str(i)+".dat",num2str(pinch(pTM(1:10,i,1:1000))));
+}
+
+
+        T = getresult("T","T");
+        tTM = T.getattribute("T");  
+        E=pinch(getdata("T","Ey"));
+        TM_angle=pinch(angle(E(1,1:1000))) ;        
+        pTM=unwrap((TM_angle(1:1000,1))-(a_vac(1:1000,1)));
+        

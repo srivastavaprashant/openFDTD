@@ -1,0 +1,5 @@
+write("tTEp10h30f0.0.dat",num2str(Tte));
+write("aTEp10h30f0.0.dat",num2str(ate));
+write("tTMp10h30f0.0.dat",num2str(Ttm));
+write("aTMp10h30f0.0.dat",num2str(atm));
+write("fp10h30f0.0.dat",num2str(f));

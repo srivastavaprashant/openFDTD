@@ -1,0 +1,18 @@
+switchtolayout;
+setnamed("source","polarization angle",0);
+setnamed("structure","enabled",0);
+
+run;
+Evtm=pinch(getdata("T","Ey"));
+avtm=pinch(angle(Evtm(1,1:1000)));
+f=getdata("T","f");
+
+switchtolayout;
+setnamed("structure","enabled",1);
+
+run;
+Estm=pinch(getdata("T","Ey"));
+astm=pinch(angle(Estm(1,1:1000)));
+t=getresult("T","T");
+Ttm=t.getattribute("T");
+atm=unwrap(astm-avtm);

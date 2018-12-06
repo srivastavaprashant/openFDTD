@@ -1,0 +1,62 @@
+FDTD Solutions Version 8.15.736 (Windows 64bit)
+ expires (month/day/year): 1/1/2025
+using config file: C:/Users/Prashant/AppData/Roaming/Lumerical/FDTD Solutions.ini
+license host: <a href=http://localhost:8095>localhost:8095</a>
+current time: Wed Apr 18 13:05:39 2018
+Running on host: PC
+All processes are communicating and ready to proceed to simulation...
+Running fsp file: C:\Program Files\Lumerical\FDTD\bin\fdtd-engine-msmpi.exe -remote C:/Users/Prashant/OneDrive/thesis/work/new.fsp
+number of processors is 8
+processors are distributed as: 8x1x1
+Running 2D Simulation
+Starting meshing
+Simulation size in gridpoints: 16 x 24 x 1
+Refined 0 mesh cells (0%)
+Completed meshing!
+Meshing complete in 0 seconds of CPU time
+Starting meshing
+Simulation size in gridpoints: 16 x 24 x 1
+Refined 0 mesh cells (0%)
+Completed meshing!
+Meshing complete in 0 seconds of CPU time
+finished material properties
+Selected kernel with optimization level: 2 and split-field propagation direction: 0
+-----------------------------------------
+Beginning initialization of 2D FDTD Simulation
+  Including TE Simulation
+Starting to add sources to simulation
+
+Adding Gaussian Source propagating in X
+Starting to add boundary conditions to simulation
+Adding PML BC
+Adding parallel BC
+Adding periodic BC
+Adding periodic BC
+Starting to add monitors to Simulation
+Adding analysis monitor
+Adding frequency monitor
+Adding time monitor
+Finished initialization of 2D Simulation
+-----------------------------------------
+All processes are communicating and ready to proceed to simulation...
+Starting 4446 total iterations
+1% complete. Max time remaining: 0 secs. Auto Shutoff: 1
+3% complete. Max time remaining: 0 secs. Auto Shutoff: 1
+5% complete. Max time remaining: 0 secs. Auto Shutoff: 1
+11% complete. Max time remaining: 0 secs. Auto Shutoff: 1
+23% complete. Max time remaining: 0 secs. Auto Shutoff: 1
+46% complete. Max time remaining: 0 secs. Auto Shutoff: 0.00350373
+68% complete. Max time remaining: 0 secs. Auto Shutoff: 5.89051e-006
+Early termination of simulation, the autoshutoff criteria are satisfied.
+Completed 3027 iterations, or 6.807826e-012s of Simulation Time
+Process 0 starting to collect data
+    collecting TE monitor data
+    collecting TE source data
+Finished collecting data
+Simulation completed successfully at: Wed Apr 18 13:05:39 2018
+Overall wall time measurements in seconds:
+    time to mesh and initialize: 0
+    time to run FDTD simulation: 0
+    time to finalize data and save to files: 0
+    FDTD solver speed: 1.#INF Mnodes/s
+    total FDTD solver speed on 8 processes: 1.#INF Mnodes/s
